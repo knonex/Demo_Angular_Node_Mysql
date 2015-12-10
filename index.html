@@ -1,0 +1,58 @@
+<html>
+<head>
+<title></title>
+<style type="text/css">
+#add_cont{
+	margin-top: 118px;
+	margin-left: 498px;
+}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="sweetalert.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+ <script type="text/javascript" src="sweetalert-dev.js"></script>
+ <script type="text/javascript" src="valid.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+<form class="form-inline" name="myform" id="add_cont" ng-app="two_way" ng-controller="two_way_control">
+<!-- <input type="text" name="pics" ng-model="news.pics" class="form-control" placeholder="Enter Image URL"><br><br> -->
+<!-- <input type="text" name="feed" ng-model="news.feed" class="form-control" placeholder="Enter News"><br><br> -->
+<p> 
+<input type="url" name="pics" ng-model="news.pics" class="form-control" placeholder="Enter Image URL" required> 
+<span style="color:red" ng-show="myform.pics.$error.required">url is required</span> 
+<span style="color:red" ng-show="myform.pics.$error.url">invalid url</span> 
+</p> 
+
+<p>
+<input type="text" name="feed" ng-model="news.feed" class="form-control" placeholder="Enter News"  ng-pattern="/^[a-zA-Z]*$/" required> 
+<span style="color:red" ng-show="myform.feed.$error.required">news is required</span> 
+<span style="color:red" style="color:red" ng-show="myform.feed.$error.pattern">Only Text is allowed</span> 
+</p> 
+ <div>Result: {{result}}</div> 
+<input type="submit" ng-disabled="!myform.$valid" class="btn btn-success" value="Add" ng-click="submit(news)">
+
+<div class="row" ng-repeat="data in profile_pictures">
+        <div class=".col-sm-6 .col-md-5 .col-lg-6" style="background-color:#eee;height:150px;width:500px;margin-left:240px;margin-top:20px;">
+          <h4 style="padding:10px;">User Say's</h4><hr>
+          <p style="padding:10px;">
+            {{data.news}}
+          </p>
+          <img src="{{data.profile_picture}}" class="img-circle" style="width:100px;height:100px;margin-left:-140px;margin-top:-130px;">
+        </div>
+      </div>
+      
+</form>
+
+
+
+
+</div>   
+</body>
+</html>
